@@ -1,0 +1,32 @@
+[
+        {
+            "productName": "Sauce Labs Backpack",
+            "locator": "sauce-labs-backpack"
+        },
+
+        {
+            "productName": "Sauce Labs Bike Light",
+            "locator": "sauce-labs-bike-light"
+        },
+
+        {
+            "productName": "Sauce Labs Bolt T-Shirt",
+            "locator": "sauce-labs-bolt-t-shirt"
+        },
+
+        {
+            "productName": "Sauce Labs Fleece Jacket",
+            "locator": "sauce-labs-fleece-jacket"
+        },
+
+        {
+            "productName": "Sauce Labs Onesie",
+            "locator": "sauce-labs-onesie"
+        }, 
+
+        {
+            "productName": "Test.allTheThings() T-Shirt (Red)",
+            "locator": "test.allthethings()-t-shirt-(red)"
+        }
+
+]
