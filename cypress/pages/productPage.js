@@ -1,9 +1,11 @@
 class productPage  {
 
+  
     //Locators
+    
 
     productLabel() {
-        return cy.get('.title')
+        return cy.contains('Products')
     }
 
     addElementToTheCarButton(product){
@@ -14,7 +16,17 @@ class productPage  {
         return cy.get('[data-test="remove-'+product+'"]')
     }
 
+    ShoppingCartButton(){
+        return cy.get('.shopping_cart_link')
+    }
+
+    
+
     //Functions
+    addAllElementsToTheCar () {
+        return 0;
+
+    }  
 }
 
 export default productPage

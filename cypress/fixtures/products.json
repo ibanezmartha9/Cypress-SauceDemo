@@ -1,7 +1,8 @@
 [
         {
             "productName": "Sauce Labs Backpack",
-            "locator": "sauce-labs-backpack"
+            "locator": "sauce-labs-backpack",
+            "price" : "29.99"
         },
 
         {
