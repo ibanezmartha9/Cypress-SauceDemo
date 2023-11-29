@@ -3,30 +3,18 @@ class productPage  {
   
     //Locators
     
-
-    productLabel() {
+   productLabel() {
         return cy.contains('Products')
     }
 
-    addElementToTheCarButton(product){
-        return cy.get('[data-test="add-to-cart-'+product+'"]')        
-    }
-
-    removeButton(product){
-        return cy.get('[data-test="remove-'+product+'"]')
-    }
+    openElement(position){
+        return cy.get('#item_'+position+'_title_link > .inventory_item_name')
+    }   
 
     ShoppingCartButton(){
         return cy.get('.shopping_cart_link')
     }
-
-    
-
-    //Functions
-    addAllElementsToTheCar () {
-        return 0;
-
-    }  
+       
 }
 
 export default productPage
