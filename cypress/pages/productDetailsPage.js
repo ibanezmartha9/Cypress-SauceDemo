@@ -3,12 +3,12 @@ class productDetailsPage  {
     //Locators
     
 
-    productTitle() {
+    productTitleToAdd() {
         return cy.get('.inventory_details_name')
     }
 
-    productPrice(){
-        return cy.get('.inventory_details_price')
+    productPriceToAdd(){
+        return cy.get('.inventory_details_price') //
     }
 
     backToProductList(){

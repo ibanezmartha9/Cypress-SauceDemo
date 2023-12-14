@@ -45,6 +45,17 @@ class cartPage {
     backHomeButton(){
         return cy.get('[data-test="back-to-products"]')
     }
+
+    productTitleAdded(positionTitle) {
+        return cy.get('#item_'+positionTitle+'_title_link > .inventory_item_name')
+    }
+
+    productPriceAdded(positionPrice) {
+        return cy.get(':nth-child('+positionPrice+') > .cart_item_label > .item_pricebar > .inventory_item_price')
+    }
+
+   
+    
 }
 
 export default cartPage

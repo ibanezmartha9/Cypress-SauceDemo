@@ -1,8 +1,8 @@
 import loginPage from "../pages/loginPage"
 import productPage from "../pages/productPage"
 import cartPage from "../pages/cartPage"
-import product from "../pages/product"
 import productDetailsPage from "../pages/productDetailsPage"
+import productToAdd from "../pages/productToAdd"
 
 
 const login = new loginPage
@@ -23,16 +23,14 @@ describe('Testing the main workflow, from login to payment for products', () => 
             login.passwordField().type(loginData.password)   
             login.loginButton().click()
             productPag.productLabel().should('be.visible') 
-            let productsToOPen = 3 
-            let productArray = []          
-            for(let i = 1; i<=productsToOPen; i++){               
-                productPag.openElement(i).click() 
-                productDetailPage.backToProductList().should('exist')
-                const producto = new product()
-                productArray.push(producto)
-                productDetailPage.addElementToTheCarButton().click()
-                productDetailPage.backToProductList().click()               
+            let productsToAddToTheCartArray = []
+            let productsToselect = 2
+            for(let i = 0; i<=productsToselect; i++){ 
+                const product = new productToAdd(i) 
+                productsToAddToTheCartArray.push(product)
+                product.addToTheCartButton(i)                           
             }
+            //cy.log(productsToAddToTheCartArray)
             productPag.ShoppingCartButton().click()
             cart.yourCartLabel().should('be.visible')
             cart.checkoutButton().click()
@@ -41,26 +39,7 @@ describe('Testing the main workflow, from login to payment for products', () => 
             cart.lastNameField().type(cartData.lastName)
             cart.zipPostalCodeField().type(cartData.postalCode)
             cart.continueButton().click()
-
-
-            // productData.forEach((productData => {
-            //     product.removeButton(productData.locator).should('not.to.exist')
-            //     product.addElementToTheCarButton(productData.locator).click()
-            //     product.removeButton(productData.locator).should('be.exist')
-            //  }))
-            // p
-            // cart.yourCartLabel().should('be.visible')
-            // cart.checkoutButton().click()
-            // cart.checkoutInformationLabel().should('be.visible')
-            // cart.firstNameField().type(cartData.firstName)
-            // cart.lastNameField().type(cartData.lastName)
-            // cart.zipPostalCodeField().type(cartData.postalCode)
-            // cart.continueButton().click()
-            // cart.checkoutOverviewLabel().should('be.visible')
-            // cart.finishButton().click()
-            // cart.thankMessage().should('be.visible')
-            // cart.backHomeButton().click()
-            // productPage.productLabel().should('be.visible')
+            cart.checkoutOverviewLabel().should('be.visible')
         })
     
 })
