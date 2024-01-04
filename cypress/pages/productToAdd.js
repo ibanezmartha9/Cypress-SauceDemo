@@ -23,11 +23,6 @@ class productToAdd{
             this.itemPrice = value.slice(firstValue);
         })
     }
-
-    addToTheCartButton(position){
-        product.addToTheCartButtonPerItem(position).click()        
-    }
-
 }
 
 export default productToAdd

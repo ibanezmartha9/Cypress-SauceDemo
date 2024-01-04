@@ -15,8 +15,8 @@ class productPage  {
         return cy.get('.inventory_item_price').eq(position)
     }
 
-    addToTheCartButtonPerItem(position){
-        return cy.get('.btn_inventory').eq(position)
+    addProductToTheCart(position){
+        return cy.get('.btn_inventory').eq(position).click()
     }
 
     openElement(position){
