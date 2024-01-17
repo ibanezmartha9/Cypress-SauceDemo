@@ -21,16 +21,16 @@ describe('Testing the main workflow, from login to payment for products', () => 
             login.loginButton().click()
             productPag.productLabel().should('be.visible') 
             let productsToAddToTheCartArray = []
+            let productsPricesInTheCart = []
             let productsToselect = 2
             for(let i = 0; i<=productsToselect; i++){ 
                 const product = new productToAdd(i) 
                 productsToAddToTheCartArray.push(product)
+                cy.wait(100).then( () => {
+                    productsPricesInTheCart.push(product.itemPrice)
+                 })                
                 productPag.addProductToTheCart(i)                          
             }
-            cy.log(productsToAddToTheCartArray)
-            // productsToAddToTheCartArray.forEach(
-            //     product => cy.log(product.itemname)
-            //)
             productPag.ShoppingCartButton().click()
             cart.yourCartLabel().should('be.visible')
             cart.checkoutButton().click()
@@ -39,8 +39,12 @@ describe('Testing the main workflow, from login to payment for products', () => 
             cart.lastNameField().type(cartData.lastName)
             cart.zipPostalCodeField().type(cartData.postalCode)
             cart.continueButton().click()
-            cart.checkoutOverviewLabel().should('be.visible')
-            cart.verifyItemsInCheckout(productsToAddToTheCartArray)
-        })
-    
+            cart.checkoutOverviewLabel().should('be.visible') 
+            cy.wrap(cart.compareLengthArrays(cart.verifyItemsInCheckout(productsToAddToTheCartArray), productsPricesInTheCart)).should('be.true')         
+            cy.wrap(cart.compareValueBeforeTaxes(cart.totalBeforeTaxes(), cart.sumValuesInTheArray(productsToAddToTheCartArray))).should('be.true')
+            cart.finishButton().click()  
+            cart.ckceoutCompleteLabel().should('exist')  
+            cart.backHomeButton().click()  
+            productPag.productLabel().should('exist')  
+        })    
 })
