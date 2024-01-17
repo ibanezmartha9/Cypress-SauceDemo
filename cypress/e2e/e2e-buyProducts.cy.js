@@ -40,14 +40,11 @@ describe('Testing the main workflow, from login to payment for products', () => 
             cart.zipPostalCodeField().type(cartData.postalCode)
             cart.continueButton().click()
             cart.checkoutOverviewLabel().should('be.visible') 
-            cy.wrap(cart.compareLengthArrays(cart.verifyItemsInCheckout(productsToAddToTheCartArray), productsPricesInTheCart)).should('be.true')
-            cart.totalBeforeTaxes()
-            //cart.sumValuesInTheArray(cart.verifyItemsInCheckout(productsToAddToTheCartArray))
-
-            //cy.wrap(cart.compareValueBeforeTaxes(cart.totalBeforeTaxes(), cart.sumValuesInTheArray(cart.verifyItemsInCheckout(productsToAddToTheCartArray)))).should('be.true')
-            
-
-            
-        })
-    
+            cy.wrap(cart.compareLengthArrays(cart.verifyItemsInCheckout(productsToAddToTheCartArray), productsPricesInTheCart)).should('be.true')         
+            cy.wrap(cart.compareValueBeforeTaxes(cart.totalBeforeTaxes(), cart.sumValuesInTheArray(productsToAddToTheCartArray))).should('be.true')
+            cart.finishButton().click()  
+            cart.ckceoutCompleteLabel().should('exist')  
+            cart.backHomeButton().click()  
+            productPag.productLabel().should('exist')  
+        })    
 })

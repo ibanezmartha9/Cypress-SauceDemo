@@ -57,17 +57,26 @@ class cartPage {
         return cy.get(':nth-child('+positionPrice+') > .cart_item_label > .item_pricebar > .inventory_item_price')
     }
 
+    finishButton(){
+        return cy.get('[data-test="finish"]')
+    }
+
+    ckceoutCompleteLabel(){
+        return cy.contains('Checkout: Complete!')
+    }
+
     totalBeforeTaxes(){
-            let totalBT = 0
+            let totalBT 
             cy.get('.summary_subtotal_label').invoke('text').then(name => {
-                totalBT = name = name.slice(valueIndex);
-         })                     
-        return (totalBT)
+                totalBT = name 
+                name.slice(valueIndex);
+                return totalBT
+         })                      
+        
     }   
 
       verifyItemsInCheckout(products){
         let productsInCheckout = [] 
-        let sum = 0
         for(let i = 0; i < products.length; i++){             
                 cy.get('.inventory_item_price').eq(i).invoke('text').then(text3 => { 
                     text3 = text3.slice(firstValue);
@@ -80,19 +89,18 @@ class cartPage {
 
     compareLengthArrays(arr1, arr2){        
             return arr1.length === arr2.length;
-    }
+        }
 
     sumValuesInTheArray(products){
-        let total = 0
-        cy.wait(2000).then( () => {
-            total = cy.wrap(products.reduce((a, b) => a + b, 0))
-         }) 
-        return total
-    }
+        setTimeout(() => {
+            let total
+            total = products.reduce((a, b) => a + b, 0)
+        }, 5000)
+        }
 
     compareValueBeforeTaxes(value1, value2){
         return value1 === value2;
-    } 
+        } 
 
 }
 
